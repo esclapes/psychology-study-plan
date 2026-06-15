@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Psychology A Level — Study Plan (Paper 3 & 4)</title>
+<style>
+  :root{
+    --bg:#0f1419; --panel:#1a212b; --panel2:#222c38; --ink:#e8edf2; --muted:#9fb0c0;
+    --line:#2c3845; --accent:#4fc3f7; --done:#2e7d32; --doneBg:#16321a;
+    --found:#7e57c2; --clin:#ef5350; --health:#26a69a; --consol:#ffa726; --exam:#42a5f5;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding:0 0 80px}
+  header{background:linear-gradient(135deg,#152033,#0f1419);padding:28px 20px 22px;border-bottom:1px solid var(--line)}
+  .wrap{max-width:940px;margin:0 auto;padding:0 16px}
+  h1{margin:0 0 4px;font-size:26px}
+  h2{font-size:21px;margin:34px 0 12px;border-bottom:2px solid var(--line);padding-bottom:6px}
+  h3{font-size:17px;margin:0 0 6px}
+  .sub{color:var(--muted);margin:0}
+  a{color:var(--accent)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+  .stat{background:var(--panel2);border-radius:10px;padding:12px 14px}
+  .stat b{display:block;font-size:22px}
+  .stat span{color:var(--muted);font-size:13px}
+  /* progress */
+  .progwrap{position:sticky;top:0;z-index:20;background:rgba(15,20,25,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 0}
+  .bar{height:14px;background:var(--panel2);border-radius:8px;overflow:hidden}
+  .fill{height:100%;width:0;background:linear-gradient(90deg,#26a69a,#4fc3f7);transition:width .3s}
+  .progrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .btn{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px}
+  .btn:hover{border-color:var(--accent)}
+  /* phase tag */
+  .ph{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:2px 9px;border-radius:20px;color:#fff}
+  .ph.found{background:var(--found)} .ph.clin{background:var(--clin)} .ph.health{background:var(--health)}
+  .ph.consol{background:var(--consol);color:#222} .ph.exam{background:var(--exam)}
+  /* session */
+  .sess{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--line);border-radius:10px;margin:10px 0;overflow:hidden}
+  .sess.found{border-left-color:var(--found)} .sess.clin{border-left-color:var(--clin)}
+  .sess.health{border-left-color:var(--health)} .sess.consol{border-left-color:var(--consol)} .sess.exam{border-left-color:var(--exam)}
+  .sess.done{opacity:.62;border-left-color:var(--done)}
+  .sess.today{box-shadow:0 0 0 2px var(--accent)}
+  .shead{display:flex;align-items:flex-start;gap:12px;padding:13px 15px;cursor:pointer}
+  .shead .dchk{width:22px;height:22px;margin-top:2px;flex:0 0 auto;accent-color:var(--done);cursor:pointer}
+  .smeta{flex:1;min-width:0}
+  .sdate{font-size:12px;color:var(--muted);margin-bottom:2px}
+  .sdate .todaytag{background:var(--accent);color:#06222e;font-weight:700;border-radius:5px;padding:1px 6px;margin-left:6px;font-size:11px}
+  .stitle{font-weight:600;font-size:16px}
+  .scode{font-size:12px;color:var(--muted);font-family:ui-monospace,Menlo,monospace}
+  .chev{color:var(--muted);transition:transform .2s;margin-top:4px}
+  .sess.open .chev{transform:rotate(90deg)}
+  .sbody{display:none;padding:0 15px 15px 49px}
+  .sess.open .sbody{display:block}
+  .focus{color:var(--ink);background:var(--panel2);border-radius:8px;padding:10px 12px;margin:0 0 12px;font-size:14px}
+  .tasks{list-style:none;margin:0;padding:0}
+  .tasks li{display:flex;gap:9px;align-items:flex-start;padding:4px 0;font-size:14px}
+  .tasks input{width:17px;height:17px;margin-top:2px;accent-color:var(--accent);flex:0 0 auto;cursor:pointer}
+  .tags{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+  .tag{font-size:11px;border:1px solid var(--line);border-radius:6px;padding:2px 8px;color:var(--muted)}
+  .tag.study{border-color:#7e57c2;color:#c5a3ff}
+  .tag.time{border-color:#26a69a;color:#7fe3d4}
+  .tag.book{border-color:#42a5f5;color:#a3d4ff}
+  details.ref{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:4px 14px;margin:10px 0}
+  details.ref summary{cursor:pointer;font-weight:600;padding:8px 0}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+  th,td{border:1px solid var(--line);padding:6px 8px;text-align:left}
+  th{background:var(--panel2)}
+  .note{font-size:13px;color:var(--muted)}
+  ul.tight{margin:6px 0;padding-left:20px}
+  ul.tight li{margin:3px 0}
+  .holiday{background:repeating-linear-gradient(45deg,#1a212b,#1a212b 10px,#202a36 10px,#202a36 20px);border:1px dashed var(--line);border-radius:10px;text-align:center;padding:14px;margin:12px 0;color:var(--muted)}
+  kbd{background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-size:12px}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:6px}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .dot{width:11px;height:11px;border-radius:3px;display:inline-block}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>🧠 Psychology A Level — Study Plan</h1>
+    <p class="sub">Cambridge International AS &amp; A Level Psychology (<b>9990</b>) · Year 2 · <b>Paper 3 &amp; Paper 4</b> · Options: <b>Clinical + Health</b></p>
+    <p class="sub" style="margin-top:6px">Plan runs <b>Tue 16 June → Tue 1 September 2026</b> · holiday off <b>1–14 August</b> · ~1–2 hours/day · target: full first pass before school + your October exam.</p>
+  </div>
+</header>
+
+<div class="progwrap">
+  <div class="wrap progrow">
+    <div style="flex:1;min-width:200px">
+      <div class="bar"><div class="fill" id="fill"></div></div>
+    </div>
+    <div id="pcount" style="font-weight:700;white-space:nowrap"></div>
+    <button class="btn" id="todayBtn">Jump to today</button>
+    <button class="btn" id="resetBtn">Reset progress</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ===================== EXAM EXPLAINER ===================== -->
+  <h2>📋 How Year 2 works — Paper 3 &amp; Paper 4</h2>
+  <div class="card">
+    <p>In Year 1 (AS) you sat <b>Paper 1</b> (Approaches, Issues &amp; Debates) and <b>Paper 2</b> (Research Methods). For the full A Level you now add <b>Paper 3</b> and <b>Paper 4</b>. Both are based on <b>two specialist options</b> — you have chosen <b>Clinical</b> and <b>Health</b> psychology. You answer questions on <i>both</i> options in each paper.</p>
+    <div class="grid" style="margin-top:12px">
+      <div class="stat"><b>Paper 3</b><span>Specialist Options: Approaches, Issues &amp; Debates · 1h30 · 60 marks · 25% of A Level</span></div>
+      <div class="stat"><b>Paper 4</b><span>Specialist Options: Application &amp; Research Methods · 1h30 · 60 marks · 25% of A Level</span></div>
+    </div>
+    <table>
+      <tr><th>Paper</th><th>Structure</th><th>What it tests</th></tr>
+      <tr>
+        <td><b>Paper 3</b></td>
+        <td>4 questions per option (you do 2 options = 30 marks each). Per option: 3 short-answer questions (<b>14 marks</b>) + one structured essay: part (a) <i>describe</i> <b>6 marks</b>, part (b) <i>evaluate</i> <b>10 marks</b>.</td>
+        <td>Knowledge + evaluation of theories, explanations &amp; treatments; applying the <b>issues &amp; debates</b>. Heavy on <b>AO3 evaluation</b>.</td>
+      </tr>
+      <tr>
+        <td><b>Paper 4</b></td>
+        <td><b>Section A:</b> 2 structured questions per option (18 marks each). <b>Section B:</b> one <b>planning question</b> (choose 1 of 4) — plan a study (10 marks) + evaluate the plan (14 marks).</td>
+        <td>Applying knowledge + <b>research methods</b>: linking key studies to methods, and <b>designing/planning</b> an investigation.</td>
+      </tr>
+    </table>
+    <p class="note">⚠️ Topics tested in Paper 3 will be <b>different</b> from those tested in Paper 4 in any given series — so you must know <i>all</i> topics, you can't predict which paper a topic lands in. Paper 3 &amp; 4 must be taken in the same exam series.</p>
+  </div>
+
+  <details class="ref">
+    <summary>📑 The 8 Issues &amp; Debates (A Level) — apply these everywhere for evaluation marks</summary>
+    <ul class="tight">
+      <li><b>Application to everyday life</b> — how the research helps in the real world.</li>
+      <li><b>Individual vs situational</b> explanations of behaviour.</li>
+      <li><b>Nature vs nurture.</b></li>
+      <li><b>Use of children</b> in psychological research (ethics/validity).</li>
+      <li><b>Cultural differences.</b></li>
+      <li><b>Reductionism vs holism.</b></li>
+      <li><b>Determinism vs free-will.</b></li>
+      <li><b>Idiographic vs nomothetic.</b></li>
+    </ul>
+    <p class="note">In Paper 3 part (b) "evaluate" answers, weaving 2–3 of these in is how you reach the top band.</p>
+  </details>
+
+  <details class="ref">
+    <summary>🔬 New Research Methods &amp; concepts at A Level (build on your AS knowledge)</summary>
+    <ul class="tight">
+      <li><b>Experiments:</b> randomised controlled trials (RCTs).</li>
+      <li><b>Questionnaires:</b> postal questionnaires; rating scales (forced/fixed choice).</li>
+      <li><b>Psychometric tests</b> — describe &amp; evaluate.</li>
+      <li><b>Hypotheses:</b> null, directional (one-tailed), non-directional (two-tailed).</li>
+      <li><b>Validity</b> including <b>temporal validity</b>.</li>
+      <li><b>Paper 4 planning</b> adds (vs AS): aims &amp; hypotheses, sample &amp; sampling, ethics, analysis &amp; descriptive statistics, counterbalancing/random allocation, number of observers.</li>
+    </ul>
+  </details>
+
+  <div class="card">
+    <h3>🔗 Resources</h3>
+    <ul class="tight">
+      <li><b>Your coursebook:</b> Russell, Gauntlett &amp; Papaconstantinou — <i>Psychology for Cambridge International AS &amp; A Level</i> (2nd ed, 2022). Page refs in each session below.</li>
+      <li><b>Official syllabus (2024–26):</b> <a href="https://www.cambridgeinternational.org/Images/634461-2024-2026-syllabus.pdf">cambridgeinternational.org — 9990 syllabus PDF</a> — read the assessment + subject-content sections.</li>
+      <li><b>Specimen &amp; past papers (for exam from 2024):</b> search "9990 specimen paper 3 / paper 4 2024" on cambridgeinternational.org, or mirrors like papacambridge / learnedguys. Use <b>May/June 2024</b> and <b>2025</b> papers — these match the current format.</li>
+      <li><b>Learner Guide 9990 (from 2024)</b> — command words &amp; how answers are marked.</li>
+    </ul>
+    <p class="note">Honest note: because this syllabus is only examined from 2024, there are only a couple of real past-paper series. Use the specimen papers + 2024/2025 series; ignore pre-2024 papers (different format).</p>
+  </div>
+
+  <!-- ===================== HOW TO USE ===================== -->
+  <div class="card">
+    <h3>✅ How to use this tracker</h3>
+    <ul class="tight">
+      <li>Each day is a <b>session</b>. Tick the big checkbox on the left to mark a day <b>done</b> — this drives the progress bar.</li>
+      <li>Click a session to expand its <b>task checklist</b> (also saved). Tick tasks as you go.</li>
+      <li>Everything is saved in your browser (<kbd>localStorage</kbd>) on this device — close and reopen anytime.</li>
+      <li><b>Sundays = rest / catch-up</b> (built in on purpose — if you miss a day, use Sunday to recover so the plan never collapses).</li>
+      <li>Suggested daily rhythm in ~90 min: <b>~40 min read</b> the book pages → <b>~30 min</b> make/condense notes → <b>~20 min</b> self-test (cover the page, recall, or do a past-paper part).</li>
+    </ul>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--found)"></i>Foundations</span>
+      <span><i class="dot" style="background:var(--clin)"></i>Clinical</span>
+      <span><i class="dot" style="background:var(--health)"></i>Health</span>
+      <span><i class="dot" style="background:var(--consol)"></i>Consolidation</span>
+      <span><i class="dot" style="background:var(--exam)"></i>Paper 4 &amp; Past papers</span>
+    </div>
+  </div>
+
+  <!-- ===================== SCHEDULE ===================== -->
+  <h2>🗓️ Daily Schedule</h2>
+  <div id="schedule"></div>
+
+  <p class="note" style="margin-top:30px">Built 15 June 2026 · This is your <b>first pass</b> — get full coverage now, then review &amp; deepen with your teacher when school starts. Adjust freely: the Sunday buffers and the consolidation block are there to absorb slippage.</p>
+</div>
+
+<script>
+/* ---------- DATA ---------- */
+// phase: found / clin / health / consol / exam
+const S = [
+ {n:1,date:"Tue 16 Jun",ph:"found",code:"Setup",title:"Orientation: how Paper 3 & 4 work",
+  focus:"Get the lay of the land before studying content. Read the exam explainer at the top of this page and the assessment section of the syllabus.",
+  book:"Book p.175–179 (Issues & debates + Research methods at A Level intros)",
+  tasks:["Read the 'How Year 2 works' panel above + skim syllabus assessment pages","Note the structure & mark split of Paper 3 vs Paper 4","Set up a notes system (one doc/folder per topic) + get/print specimen papers","Write the 8 issues & debates on a card to keep visible"]},
+ {n:2,date:"Wed 17 Jun",ph:"found",code:"RM refresh",title:"Refresh AS research methods",
+  focus:"Paper 4 assumes all your AS research methods. Skim-revise the core methods so they're fresh.",
+  book:"Book Ch.1 p.3–62 (skim)",
+  tasks:["Skim experiments, self-reports, case studies, observations, correlations, longitudinal studies","Re-note key strengths/weaknesses of each method","Recall: independent/dependent variables, controls, experimental designs"]},
+ {n:3,date:"Thu 18 Jun",ph:"found",code:"RM A-level",title:"New A-level methods: RCTs, postal questionnaires, rating scales",
+  focus:"Learn the new research methods introduced at A Level.",
+  book:"Book p.177–179",
+  tasks:["Define & evaluate randomised controlled trials (RCTs)","Define & evaluate postal questionnaires","Define & evaluate rating scales (forced/fixed choice)"]},
+ {n:4,date:"Fri 19 Jun",ph:"found",code:"RM concepts",title:"Psychometric tests & validity (incl. temporal validity)",
+  focus:"Methodological concepts relevant to all options.",
+  book:"Book p.177–179",
+  tasks:["Describe & evaluate psychometric tests","Define validity types; explain temporal validity with an example","Note how validity is used to evaluate a study"]},
+ {n:5,date:"Sat 20 Jun",ph:"found",code:"RM hypotheses",title:"Hypotheses: null, one-tailed, two-tailed",
+  focus:"Be able to write and identify each type — needed in Paper 4 planning.",
+  book:"Book p.177–179",
+  tasks:["Write a null hypothesis for a given scenario","Write directional (one-tailed) & non-directional (two-tailed) alternatives","Practise spotting which type a study needs"]},
+ {n:6,date:"Mon 22 Jun",ph:"found",code:"I&D 1",title:"Issues & debates (part 1)",
+  focus:"First four debates — you'll apply these to every topic for evaluation marks.",
+  book:"Book p.175–176",
+  tasks:["Application to everyday life — define + example","Individual vs situational explanations","Nature vs nurture","Use of children in research"]},
+ {n:7,date:"Tue 23 Jun",ph:"found",code:"I&D 2",title:"Issues & debates (part 2)",
+  focus:"Remaining four debates. Make a one-line definition + example for each of all 8.",
+  book:"Book p.175–176",
+  tasks:["Cultural differences","Reductionism vs holism","Determinism vs free-will","Idiographic vs nomothetic","Make a master '8 debates' summary card"]},
+
+ // ---- CLINICAL ----
+ {n:8,date:"Wed 24 Jun",ph:"clin",code:"1.1.1",title:"Schizophrenia: diagnosis & symptoms",
+  focus:"ICD-11 diagnostic criteria; positive & negative symptoms; a case study; types of delusions.",
+  book:"Book Ch.6 p.182–186",study:"KEY STUDY: Freeman et al. (2003) — virtual reality & persecutory ideation",
+  tasks:["Positive vs negative symptoms (with examples)","ICD-11 criteria + a case study of schizophrenia","Types of delusions","Freeman et al. (2003): aim, method (VR), findings, evaluation"],
+  debate:"individual vs situational · idiographic vs nomothetic · case studies"},
+ {n:9,date:"Thu 25 Jun",ph:"clin",code:"1.1.2",title:"Schizophrenia: explanations",
+  focus:"Biological (genetic; biochemical = dopamine hypothesis) and cognitive explanation.",
+  book:"Book Ch.6 p.186–189",
+  tasks:["Genetic explanation","Dopamine hypothesis (biochemical)","Cognitive explanation","Compare the explanations (strengths/weaknesses)"],
+  debate:"nature vs nurture · reductionism vs holism"},
+ {n:10,date:"Fri 26 Jun",ph:"clin",code:"1.1.3",title:"Schizophrenia: treatment & management",
+  focus:"Biological (typical/atypical antipsychotics; ECT) and psychological (CBT).",
+  book:"Book Ch.6 p.189–193",study:"Example study: Sensky et al. (2000) — CBT",
+  tasks:["Typical vs atypical antipsychotics","Electro-convulsive therapy (ECT)","CBT for schizophrenia (incl. Sensky et al. 2000)","Compare effectiveness of treatments"],
+  debate:"idiographic vs nomothetic · ethics · longitudinal studies"},
+ {n:11,date:"Sat 27 Jun",ph:"clin",code:"1.2.1",title:"Mood disorders: diagnosis",
+  focus:"ICD-11 criteria for depressive (unipolar) & bipolar disorder; manic & depressive episodes; a measure.",
+  book:"Book Ch.6 p.194–196",
+  tasks:["Depressive disorder vs bipolar — criteria & episodes","Beck Depression Inventory (measure)","Note relevant debates: cultural differences, validity, psychometrics"],
+  debate:"individual vs situational · cultural differences · psychometrics"},
+ {n:12,date:"Mon 29 Jun",ph:"clin",code:"1.2.2",title:"Mood disorders: explanations of depression",
+  focus:"Biological (biochemical; genetic) and psychological (Beck's cognitive theory; learned helplessness).",
+  book:"Book Ch.6 p.196–199",study:"KEY STUDY: Oruč et al. (1997) — genetics of mood disorder",
+  tasks:["Biochemical & genetic explanations","Oruč et al. (1997): association analysis — method & findings","Beck's cognitive theory of depression","Learned helplessness / attributional style (Seligman et al. 1988)"],
+  debate:"nature vs nurture · reductionism vs holism · determinism vs free-will"},
+ {n:13,date:"Tue 30 Jun",ph:"clin",code:"1.2.3",title:"Mood disorders: treatment",
+  focus:"Antidepressants (tricyclics, MAOIs, SSRIs); Beck's cognitive restructuring; Ellis's REBT.",
+  book:"Book Ch.6 p.199–202",
+  tasks:["Antidepressants: tricyclics, MAOIs, SSRIs","Beck's cognitive restructuring","Ellis's REBT (rational emotive behaviour therapy)","Compare biological vs psychological treatment"],
+  debate:"application to everyday life · reductionism vs holism"},
+ {n:14,date:"Wed 1 Jul",ph:"clin",code:"Review",title:"Clinical review 1 + apply debates",
+  focus:"Consolidate schizophrenia + mood disorders. Self-test from memory, then check.",
+  book:"Book Ch.6 p.182–202",
+  tasks:["Cover-and-recall: schizophrenia (diagnosis/explanations/treatment)","Cover-and-recall: mood disorders","Apply 3 issues & debates to each topic","Attempt one part-(a) 'describe' answer (6 marks)"]},
+ {n:15,date:"Thu 2 Jul",ph:"clin",code:"1.3.1",title:"Impulse control disorders: diagnosis",
+  focus:"ICD-11 criteria: kleptomania, pyromania, gambling disorder; a measure (K-SAS).",
+  book:"Book Ch.6 p.203–205",
+  tasks:["Kleptomania, pyromania, gambling disorder — criteria","Kleptomania Symptom Assessment Scale (K-SAS)","Note relevant debates & methods"],
+  debate:"idiographic vs nomothetic · questionnaires · qualitative/quantitative data"},
+ {n:16,date:"Fri 3 Jul",ph:"clin",code:"1.3.2",title:"Impulse control disorders: explanations",
+  focus:"Biological (dopamine); psychological (positive reinforcement; Miller's feeling-state theory).",
+  book:"Book Ch.6 p.205–207",
+  tasks:["Dopamine explanation","Behavioural: positive reinforcement","Cognitive: Miller's feeling-state theory","Compare explanations"],
+  debate:"nature vs nurture · reductionism vs holism · determinism vs free-will"},
+ {n:17,date:"Sat 4 Jul",ph:"clin",code:"1.3.3",title:"Impulse control disorders: treatment",
+  focus:"Biological treatment (drugs vs placebo) + cognitive-behavioural therapies.",
+  book:"Book Ch.6 p.207–210",study:"KEY STUDY: Grant et al. (2008) — drugs & placebo for gambling",
+  tasks:["Grant et al. (2008): opiate antagonists vs placebo — method & findings","Covert sensitisation (Glover 1985)","Imaginal desensitisation (Blaszczynski & Nower 2003)"],
+  debate:"application to everyday life · interviews · generalisation"},
+ {n:18,date:"Mon 6 Jul",ph:"clin",code:"1.4.1",title:"Anxiety & fear-related disorders: diagnosis",
+  focus:"GAD, agoraphobia, specific phobia (blood-injection-injury); measures (GAD-7, BIPI).",
+  book:"Book Ch.6 p.211–214",study:"Example: Mas et al. (2010) — BIPI",
+  tasks:["GAD, agoraphobia, specific (blood-injection-injury) phobia — criteria","GAD-7 assessment","Blood injection phobia inventory (BIPI)"],
+  debate:"questionnaires · psychometrics · validity · reliability"},
+ {n:19,date:"Tue 7 Jul",ph:"clin",code:"1.4.2",title:"Fear-related disorders: explanations",
+  focus:"Biological (genetic); behavioural (classical conditioning — Little Albert); psychodynamic (Little Hans).",
+  book:"Book Ch.6 p.214–217",study:"Watson & Rayner (1920) 'Little Albert'; Freud (1909) 'Little Hans'; Öst (1992)",
+  tasks:["Genetic explanation (Öst 1992)","Behavioural: classical conditioning — Little Albert","Psychodynamic: Little Hans","Compare the three explanations"],
+  debate:"nature vs nurture · determinism vs free-will · case studies"},
+ {n:20,date:"Wed 8 Jul",ph:"clin",code:"1.4.3",title:"Anxiety & fear: treatment",
+  focus:"Systematic desensitisation; CBT + applied tension (for BII phobia).",
+  book:"Book Ch.6 p.217–220",study:"KEY STUDY: Chapman & DeLapp (2013) — CBT for blood-injection-injury phobia",
+  tasks:["Systematic desensitisation (applied to a fear disorder)","Applied tension for blood/injection/injury phobia","Chapman & DeLapp (2013): manualised CBT case — method & outcome"],
+  debate:"idiographic vs nomothetic · case studies · self-reports"},
+ {n:21,date:"Thu 9 Jul",ph:"clin",code:"1.5.1",title:"OCD: diagnosis",
+  focus:"ICD-11 criteria; obsessions & compulsions; measures (MOCI, Y-BOCS).",
+  book:"Book Ch.6 p.221–224",study:"Example: Rapoport (1989) 'Charles'",
+  tasks:["Types of obsessions & compulsions (Rapoport 'Charles')","Maudsley Obsessive-Compulsive Inventory (MOCI)","Yale-Brown Obsessive-Compulsive Scale (Y-BOCS)"],
+  debate:"interviews · case studies · psychometrics · validity"},
+ {n:22,date:"Fri 10 Jul",ph:"clin",code:"1.5.2",title:"OCD: explanations",
+  focus:"Biological (biochemical; genetic); psychological (cognitive thinking error; behavioural; psychodynamic).",
+  book:"Book Ch.6 p.224–228",
+  tasks:["Biochemical & genetic explanations","Cognitive (thinking error)","Behavioural (operant conditioning) & psychodynamic","Compare explanations"],
+  debate:"nature vs nurture · reductionism vs holism · determinism vs free-will"},
+ {n:23,date:"Sat 11 Jul",ph:"clin",code:"1.5.3",title:"OCD: treatment + Clinical wrap-up",
+  focus:"SSRIs; ERP; CBT. Then a quick sweep of all 5 Clinical key studies.",
+  book:"Book Ch.6 p.228–235",study:"KEY STUDY: Lovell et al. (2006) — telephone CBT for OCD; ERP example: Lehmkuhl et al. (2008)",
+  tasks:["SSRIs for OCD","Exposure & response prevention (ERP)","Lovell et al. (2006): telephone-administered CBT (RCT) — method & findings","List all 5 Clinical key studies on one card"],
+  debate:"individual vs situational · cultural differences · reliability"},
+
+ // ---- HEALTH ----
+ {n:24,date:"Mon 13 Jul",ph:"health",code:"3.1.1",title:"Patient–practitioner: interpersonal skills",
+  focus:"Non-verbal (practitioner clothing) & verbal (medical terminology) communication.",
+  book:"Book Ch.8 p.305–309",study:"Examples: McKinstry & Wang (1991); McKinlay (1975)",
+  tasks:["Non-verbal communication — clothing (McKinstry & Wang 1991)","Verbal communication — understanding medical terms (McKinlay 1975)","Note relevant debates & methods"],
+  debate:"idiographic vs nomothetic · experiments · questionnaires"},
+ {n:25,date:"Tue 14 Jul",ph:"health",code:"3.1.2",title:"Patient–practitioner: diagnosis & style",
+  focus:"Making/presenting a diagnosis (false +/-); doctor-centred vs patient-centred style.",
+  book:"Book Ch.8 p.309–313",study:"KEY STUDY: Savage & Armstrong (1990) — consulting style & satisfaction",
+  tasks:["Diagnosis: disclosure, false positives/negatives, presenting a diagnosis","Doctor-centred (directed) vs patient-centred (sharing) style","Savage & Armstrong (1990): method, findings, evaluation"],
+  debate:"individual vs situational · cultural differences · validity"},
+ {n:26,date:"Wed 15 Jul",ph:"health",code:"3.1.3",title:"Misusing health services",
+  focus:"Delay in seeking treatment; health belief model; Munchausen vs malingering.",
+  book:"Book Ch.8 p.313–318",study:"Examples: Safer et al. (1979); Aleem & Ajarim (1995)",
+  tasks:["Reasons for delay (Safer et al. 1979) + alternative explanations","Health belief model","Munchausen syndrome vs malingering (features)"],
+  debate:"reductionism vs holism · idiographic vs nomothetic · case study"},
+ {n:27,date:"Thu 16 Jul",ph:"health",code:"3.2.1",title:"Adherence: types & reasons for non-adherence",
+  focus:"Types/problems of non-adherence; rational non-adherence; Health Belief Model.",
+  book:"Book Ch.8 p.319–322",study:"Example: Laba et al. (2012)",
+  tasks:["Types of non-adherence + problems caused","Rational non-adherence (Laba et al. 2012)","Health Belief Model applied to adherence"],
+  debate:"application to everyday life · individual vs situational · reductionism vs holism"},
+ {n:28,date:"Fri 17 Jul",ph:"health",code:"3.2.2",title:"Adherence: measuring non-adherence",
+  focus:"Subjective (interviews), objective (pill counting, dispensers), biological (blood/urine) measures.",
+  book:"Book Ch.8 p.322–325",study:"Examples: Riekert & Drotar (1999); Chung & Naya (2000)",
+  tasks:["Subjective measures — interviews (Riekert & Drotar 1999)","Objective — pill counting & medication dispensers (Chung & Naya 2000)","Biological measures — blood & urine"],
+  debate:"idiographic vs nomothetic · validity · reliability"},
+ {n:29,date:"Sat 18 Jul",ph:"health",code:"3.2.3",title:"Adherence: improving adherence",
+  focus:"In children; individual behavioural techniques; community interventions.",
+  book:"Book Ch.8 p.325–328",study:"KEY STUDY: Yokley & Glenwick (1984) — community interventions; Chaney et al. (2004)",
+  tasks:["Improving adherence in children (Chaney et al. 2004)","Behavioural techniques: contracts, prompts, customising","Yokley & Glenwick (1984): community interventions — method & findings"],
+  debate:"use of children in research · experiments · validity"},
+ {n:30,date:"Mon 20 Jul",ph:"health",code:"Review",title:"Health review 1 + apply debates",
+  focus:"Consolidate patient–practitioner + adherence. Self-test then check.",
+  book:"Book Ch.8 p.305–328",
+  tasks:["Cover-and-recall: patient–practitioner relationship","Cover-and-recall: adherence","Apply 3 issues & debates to each","Attempt one short-answer question set"]},
+ {n:31,date:"Tue 21 Jul",ph:"health",code:"3.3.1",title:"Pain: types & theories",
+  focus:"Functions; acute/chronic; phantom limb + mirror treatment; specificity & gate control theories.",
+  book:"Book Ch.8 p.329–332",study:"Case study: MacLachlan et al. (2004) — mirror treatment",
+  tasks:["Functions of pain; acute vs chronic","Phantom limb pain + mirror treatment (MacLachlan et al. 2004)","Specificity theory vs gate control theory"],
+  debate:"nature vs nurture · reductionism vs holism · case study"},
+ {n:32,date:"Wed 22 Jul",ph:"health",code:"3.3.2",title:"Pain: measuring pain",
+  focus:"Self-report (clinical interview); psychometric/visual scales; behavioural measures.",
+  book:"Book Ch.8 p.332–336",study:"KEY STUDY: Brudvik et al. (2016) — pain assessment by doctors/parents/children",
+  tasks:["Clinical interview; McGill Pain Questionnaire","Visual analogue scale + Brudvik et al. (2016) study","Behavioural: UAB pain behaviour scale"],
+  debate:"idiographic vs nomothetic · observations · psychometrics"},
+ {n:33,date:"Thu 23 Jul",ph:"health",code:"3.3.3",title:"Pain: managing & controlling pain",
+  focus:"Biological (biochemical); cognitive strategies; alternative (acupuncture, TENS).",
+  book:"Book Ch.8 p.336–339",
+  tasks:["Biochemical treatment","Cognitive strategies: attention diversion, non-pain imagery, cognitive redefinition","Acupuncture; stimulation therapy / TENS"],
+  debate:"application to everyday life · cultural differences · determinism vs free-will"},
+ {n:34,date:"Fri 24 Jul",ph:"health",code:"3.4.1",title:"Stress: sources of stress",
+  focus:"Physiology (GAS model); causes — life events, work, Type A personality.",
+  book:"Book Ch.8 p.340–344",study:"Example: Chandola et al. (2008) — work stress",
+  tasks:["GAS model + effects of stress on health","Holmes & Rahe life events; work stress (Chandola et al. 2008)","Friedman & Rosenman's Type A personality"],
+  debate:"individual vs situational · reductionism vs holism · idiographic vs nomothetic"},
+ {n:35,date:"Sat 25 Jul",ph:"health",code:"3.4.2",title:"Stress: measuring stress",
+  focus:"Biological (HR/fMRI; salivary cortisol) and psychological (self-report) measures.",
+  book:"Book Ch.8 p.344–347",study:"Examples: Wang et al. (2005); Evans & Wener (2007)",
+  tasks:["Biological: HR & fMRI (Wang et al. 2005); salivary cortisol (Evans & Wener 2007)","Psychological: Type A tests; Holmes & Rahe life events questionnaire","Compare biological vs psychological measures"],
+  debate:"questionnaires · psychometrics · validity · reliability"},
+ {n:36,date:"Mon 27 Jul",ph:"health",code:"3.4.3",title:"Stress: managing stress",
+  focus:"Biofeedback; imagery; stress inoculation training (3 phases).",
+  book:"Book Ch.8 p.347–351",study:"KEY STUDY: Bridge et al. (1988) — relaxation & imagery; Budzynski et al. (1969)",
+  tasks:["Biofeedback (Budzynski et al. 1969)","Bridge et al. (1988): relaxation & imagery — method & findings","Stress inoculation training — 3 phases"],
+  debate:"application to everyday life · determinism vs free-will · ethics"},
+ {n:37,date:"Tue 28 Jul",ph:"health",code:"3.5.1",title:"Health promotion: strategies",
+  focus:"Fear arousal; providing information.",
+  book:"Book Ch.8 p.352–356",study:"Examples: Janis & Feshbach (1953); Lewin et al. (1992)",
+  tasks:["Fear arousal to improve health (Janis & Feshbach 1953)","Providing information (Lewin et al. 1992)","Compare the two strategies"],
+  debate:"individual vs situational · cultural differences · ethics"},
+ {n:38,date:"Wed 29 Jul",ph:"health",code:"3.5.2",title:"Health promotion in schools & worksites",
+  focus:"Schools (healthy eating) and worksites (health & safety).",
+  book:"Book Ch.8 p.356–363",study:"Examples: Tapper et al. (2003); Fox et al. (1987)",
+  tasks:["Schools — healthy eating (Tapper et al. 2003)","Worksites — health & safety (Fox et al. 1987)","Note relevant debates & methods"],
+  debate:"use of children in research · longitudinal studies · experiments"},
+ {n:39,date:"Thu 30 Jul",ph:"health",code:"3.5.3",title:"Changing health beliefs + Health wrap-up",
+  focus:"Unrealistic optimism; positive psychology. Then sweep all 5 Health key studies.",
+  book:"Book Ch.8 p.363–371",study:"KEY STUDY: Shoshani & Steinmetz (2014) — positive psychology in schools; Weinstein (1980); Seligman (2004)",
+  tasks:["Unrealistic optimism (Weinstein 1980)","Positive psychology: pleasant/good/meaningful life (Seligman 2004)","Shoshani & Steinmetz (2014): school intervention — method & findings","List all 5 Health key studies on one card"],
+  debate:"cultural differences · idiographic vs nomothetic · psychometrics"},
+
+ {n:40,date:"Fri 31 Jul",ph:"consol",code:"Pre-holiday",title:"Pre-holiday consolidation + flashcards",
+  focus:"Last day before the break. Lock in what you've learned and prep tools to come back to.",
+  book:"Both options — your own notes",
+  tasks:["Make flashcards for all 10 key studies (aim · method · findings · evaluation)","Make flashcards for the 8 issues & debates","List your weakest 5 topics to attack after the holiday","Quick self-test across both options — note gaps"]},
+
+ // ---- POST-HOLIDAY: PAPER 4 + PAST PAPERS ----
+ {n:41,date:"Sat 15 Aug",ph:"exam",code:"P4 plan 1",title:"Paper 4 planning: general features",
+  focus:"Back from holiday. Start the Paper 4 Section B planning skill: the features that apply to ALL studies.",
+  book:"Book p.177 + syllabus 'Planning studies for Paper 4'",
+  tasks:["Aims & hypotheses; procedure","Sample & sampling technique; ethics","Validity & reliability; types of data, analysis & descriptive statistics","Practise writing the 'general features' for a sample scenario"]},
+ {n:42,date:"Mon 17 Aug",ph:"exam",code:"P4 plan 2",title:"Paper 4 planning: experiments & self-reports",
+  focus:"Specific features in enough detail to replicate.",
+  book:"Syllabus 'Planning studies for Paper 4'",
+  tasks:["Experiments: type, IV, DV, controls, design, counterbalancing/random allocation, location","Questionnaires: question format, examples, scoring, technique","Interviews: format (structured/semi/unstructured), technique","Plan an experiment for a Clinical/Health scenario"]},
+ {n:43,date:"Tue 18 Aug",ph:"exam",code:"P4 plan 3",title:"Paper 4 planning: observations, correlations, case studies, longitudinal",
+  focus:"Specific features for the remaining methods.",
+  book:"Syllabus 'Planning studies for Paper 4'",
+  tasks:["Observations: overt/covert, participant/non, naturalistic/controlled, behavioural categories, number of observers","Correlations: two co-variables, measures, scatter graph","Case studies & longitudinal designs","Practise a full plan + evaluate it (validity/reliability/ethics)"]},
+ {n:44,date:"Wed 19 Aug",ph:"exam",code:"I&D Clin",title:"Issues & debates synthesis — Clinical",
+  focus:"Apply all 8 debates to Clinical examples (this is how you nail Paper 3 part-(b) evaluations).",
+  book:"Your notes + Book Ch.6",
+  tasks:["For each of the 8 debates, give a Clinical example","Write one 10-mark 'evaluate' answer weaving in 3 debates","Self-check against the mark scheme bands"]},
+ {n:45,date:"Thu 20 Aug",ph:"exam",code:"I&D Health",title:"Issues & debates synthesis — Health",
+  focus:"Same for Health examples.",
+  book:"Your notes + Book Ch.8",
+  tasks:["For each of the 8 debates, give a Health example","Write one 10-mark 'evaluate' answer weaving in 3 debates","Self-check against the bands"]},
+ {n:46,date:"Fri 21 Aug",ph:"exam",code:"Studies Clin",title:"Key studies mastery — Clinical",
+  focus:"Drill the 5 Clinical key studies cold.",
+  book:"Flashcards from day 40",
+  tasks:["Freeman (2003); Oruč (1997); Grant (2008); Chapman & DeLapp (2013); Lovell (2006)","For each: context, method, results, conclusions, evaluation","Recall research method + relevant debate for each"]},
+ {n:47,date:"Sat 22 Aug",ph:"exam",code:"Studies Health",title:"Key studies mastery — Health",
+  focus:"Drill the 5 Health key studies cold.",
+  book:"Flashcards from day 40",
+  tasks:["Savage & Armstrong (1990); Yokley & Glenwick (1984); Brudvik (2016); Bridge (1988); Shoshani & Steinmetz (2014)","For each: context, method, results, conclusions, evaluation","Recall research method + relevant debate for each"]},
+ {n:48,date:"Mon 24 Aug",ph:"exam",code:"P4 apply",title:"Paper 4 application practice (timed)",
+  focus:"Link key studies to research methods + do a timed planning question.",
+  book:"Specimen / 2024 Paper 4",
+  tasks:["Evaluate the methods used in 3 key studies","Do one Section B planning question under time (~25 min)","Mark it against the scheme; note what cost marks"]},
+ {n:49,date:"Tue 25 Aug",ph:"exam",code:"Paper 3",title:"Timed Past Paper 3 (both options)",
+  focus:"Full paper under exam conditions — 1h30.",
+  book:"Specimen or 2024 Paper 3",
+  tasks:["Do Paper 3 in 1h30, no notes","Answer only your two options (Clinical + Health)","Leave it for marking tomorrow"]},
+ {n:50,date:"Wed 26 Aug",ph:"exam",code:"Mark P3",title:"Mark Paper 3 + log weak areas",
+  focus:"Mark honestly with the scheme; turn mistakes into a to-fix list.",
+  book:"Mark scheme",
+  tasks:["Mark with the official scheme","Note every topic where you lost marks","List 3 things to re-study"]},
+ {n:51,date:"Thu 27 Aug",ph:"exam",code:"Paper 4",title:"Timed Past Paper 4 (Section A + B)",
+  focus:"Full paper under exam conditions — 1h30.",
+  book:"Specimen or 2024 Paper 4",
+  tasks:["Do Paper 4 in 1h30, no notes","Section A (both options) + one planning question","Leave it for marking tomorrow"]},
+ {n:52,date:"Fri 28 Aug",ph:"exam",code:"Mark P4",title:"Mark Paper 4 + log weak areas",
+  focus:"Mark with the scheme; focus on the planning question criteria.",
+  book:"Mark scheme",
+  tasks:["Mark with the official scheme","Check planning-question detail (replicable? evaluated?)","List 3 things to re-study"]},
+ {n:53,date:"Sat 29 Aug",ph:"exam",code:"Fix gaps",title:"Targeted re-study of weak areas",
+  focus:"Re-study the gaps flagged from both papers; redo the questions you got wrong.",
+  book:"Your weak-area lists + book",
+  tasks:["Re-study your flagged topics","Redo the specific questions you lost marks on","Re-test those topics from memory"]},
+ {n:54,date:"Mon 31 Aug",ph:"exam",code:"Paper 2",title:"Second timed paper (P3 or P4) + self-mark",
+  focus:"A second go at whichever paper felt weakest, under time.",
+  book:"A second specimen/series paper",
+  tasks:["Do the chosen paper under time","Self-mark","Confirm your weak areas have improved"]},
+ {n:55,date:"Tue 1 Sep",ph:"consol",code:"Finish",title:"Final consolidation — first pass complete 🎉",
+  focus:"Tidy everything for review with your teacher. You've done the first full pass.",
+  book:"All your notes",
+  tasks:["Review command words & exam technique (Learner Guide)","Make condensed 1-page summary sheets per topic","List questions to ask your teacher","Plan a light review schedule for September → October exam"]},
+];
+
+const REST = [
+ {date:"Sun 21 Jun"},{date:"Sun 28 Jun"},{date:"Sun 5 Jul"},{date:"Sun 12 Jul"},
+ {date:"Sun 19 Jul"},{date:"Sun 26 Jul"},{date:"Sun 16 Aug"},{date:"Sun 23 Aug"},{date:"Sun 30 Aug"}
+];
+// insert markers: rest days fall after certain session numbers
+const RESTAFTER = {5:"Sun 21 Jun",11:"Sun 28 Jun",17:"Sun 5 Jul",23:"Sun 12 Jul",29:"Sun 19 Jul",35:"Sun 26 Jul",41:"Sun 16 Aug",47:"Sun 23 Aug",53:"Sun 30 Aug"};
+const PHNAME={found:"Foundations",clin:"Clinical",health:"Health",consol:"Consolidation",exam:"Paper 4 & Past papers"};
+
+/* ---------- STATE ---------- */
+const KEY="cie9990_plan_v1";
+let state=JSON.parse(localStorage.getItem(KEY)||"{}");
+function save(){localStorage.setItem(KEY,JSON.stringify(state));}
+
+/* ---------- RENDER ---------- */
+const sched=document.getElementById("schedule");
+// today (compare by date string within plan range)
+const todayISO=new Date().toISOString().slice(0,10);
+const DATEMAP={ // session date label -> ISO, for 'today' + jump
+};
+// build ISO map quickly
+(function(){
+  const months={Jun:"06",Jul:"07",Aug:"08",Sep:"09"};
+  S.forEach(s=>{const p=s.date.split(" ");DATEMAP[s.n]="2026-"+months[p[2]]+"-"+p[1].padStart(2,"0");});
+})();
+
+let lastPh=null;
+S.forEach(s=>{
+  if(s.ph!==lastPh){
+    const h=document.createElement("div");
+    h.innerHTML=`<div style="margin:22px 0 4px"><span class="ph ${s.ph}">${PHNAME[s.ph]}</span></div>`;
+    sched.appendChild(h);lastPh=s.ph;
+  }
+  const done=!!state["s"+s.n];
+  const isToday=DATEMAP[s.n]===todayISO;
+  const el=document.createElement("div");
+  el.className=`sess ${s.ph}${done?" done":""}${isToday?" today":""}`;
+  el.id="sess"+s.n;
+  const tasksHTML=s.tasks.map((t,i)=>{
+    const tid=`s${s.n}t${i}`;const ck=state[tid]?"checked":"";
+    return `<li><input type="checkbox" data-id="${tid}" ${ck}><label>${t}</label></li>`;
+  }).join("");
+  const tags=[];
+  tags.push(`<span class="tag book">📖 ${s.book}</span>`);
+  if(s.study) tags.push(`<span class="tag study">⭐ ${s.study}</span>`);
+  if(s.debate) tags.push(`<span class="tag">🧩 ${s.debate}</span>`);
+  tags.push(`<span class="tag time">⏱ ~60–120 min</span>`);
+  el.innerHTML=`
+    <div class="shead">
+      <input type="checkbox" class="dchk" data-session="${s.n}" ${done?"checked":""} title="Mark day complete">
+      <div class="smeta">
+        <div class="sdate">Day ${s.n} · ${s.date} ${isToday?'<span class="todaytag">TODAY</span>':""}</div>
+        <div class="stitle">${s.title} <span class="scode">[${s.code}]</span></div>
+      </div>
+      <div class="chev">▶</div>
+    </div>
+    <div class="sbody">
+      <p class="focus">${s.focus}</p>
+      <ul class="tasks">${tasksHTML}</ul>
+      <div class="tags">${tags.join("")}</div>
+    </div>`;
+  sched.appendChild(el);
+
+  if(RESTAFTER[s.n]){
+    const r=document.createElement("div");
+    r.className="holiday";
+    r.innerHTML=`😴 <b>${RESTAFTER[s.n]}</b> — Rest / catch-up day (no new content; recover any missed session)`;
+    sched.appendChild(r);
+  }
+  if(s.n===40){
+    const hb=document.createElement("div");
+    hb.className="holiday";
+    hb.innerHTML=`🏖️ <b>1–14 August — HOLIDAY (no study)</b><br><span class="note">Enjoy the break. Come back fresh on Sat 15 Aug for the consolidation + past-paper phase.</span>`;
+    sched.appendChild(hb);
+  }
+});
+
+/* ---------- INTERACTION ---------- */
+sched.addEventListener("click",e=>{
+  // expand/collapse on header click (but not when clicking the day checkbox)
+  const head=e.target.closest(".shead");
+  if(head && !e.target.classList.contains("dchk")){
+    head.parentElement.classList.toggle("open");
+  }
+});
+sched.addEventListener("change",e=>{
+  const t=e.target;
+  if(t.classList.contains("dchk")){
+    const n=t.dataset.session;
+    state["s"+n]=t.checked;
+    document.getElementById("sess"+n).classList.toggle("done",t.checked);
+    save();updateProg();
+  } else if(t.dataset.id){
+    state[t.dataset.id]=t.checked;save();
+  }
+});
+
+function updateProg(){
+  const total=S.length;
+  let done=0;S.forEach(s=>{if(state["s"+s.n])done++;});
+  document.getElementById("fill").style.width=(done/total*100)+"%";
+  document.getElementById("pcount").textContent=`${done} / ${total} days`;
+}
+updateProg();
+
+document.getElementById("resetBtn").onclick=()=>{
+  if(confirm("Reset ALL progress? This clears every tick on this device.")){
+    state={};save();location.reload();
+  }
+};
+document.getElementById("todayBtn").onclick=()=>{
+  // find nearest session on/after today
+  let target=null;
+  for(const s of S){if(DATEMAP[s.n]>=todayISO){target=s.n;break;}}
+  if(!target)target=S[S.length-1].n;
+  const el=document.getElementById("sess"+target);
+  el.classList.add("open");
+  el.scrollIntoView({behavior:"smooth",block:"center"});
+};
+</script>
+</body>
+</html>
